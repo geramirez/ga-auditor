@@ -3,6 +3,7 @@ var phantom = require('phantom');
 function GoogleAnalyticsAuditor(URL) {
   var self = this;
   self.URL = URL;
+  console.log("Working on page:" + URL);
 }
 
 GoogleAnalyticsAuditor.prototype.evaluateGA = function() {
@@ -35,7 +36,6 @@ GoogleAnalyticsAuditor.prototype.getStats = function(callback) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
       page.open(self.URL, function (status) {
-	console.log(status);
         if (status === "success") {
           page.evaluate(self.evaluateGA, function (stats) {
             callback(stats)
