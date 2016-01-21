@@ -25,7 +25,6 @@ GoogleAnalyticsAuditor.prototype.evaluateGA = function() {
 	    ua_codes: oCONFIG['GWT_UAID'],
 	    sub_agnecy: oCONFIG['SUB_AGENCY'],
 	    version: oCONFIG['VERSION'],
-
 	  };
   }
   return data;
@@ -38,10 +37,12 @@ GoogleAnalyticsAuditor.prototype.getStats = function(callback) {
       page.open(self.URL, function (status) {
         if (status === "success") {
           page.evaluate(self.evaluateGA, function (stats) {
-            callback(stats)
-            ph.exit();
+            ph.exit();          
+	    callback(stats);
           });
         } else {
+	  console.log(status);
+	  ph.exit();
           callback({'error': 'Invalid URL'})
         }
       });
