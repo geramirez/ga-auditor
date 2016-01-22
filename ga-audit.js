@@ -19,7 +19,7 @@ GoogleAnalyticsAuditor.prototype.evaluateGA = function() {
         })
     });
   }
-  if (oCONFIG) {
+  if (window.oCONFIG) {
 	  data['DAP'] = {
 	    agency: oCONFIG['AGENCY'],
 	    ua_codes: oCONFIG['GWT_UAID'],
@@ -37,7 +37,7 @@ GoogleAnalyticsAuditor.prototype.getStats = function(callback) {
       page.open(self.URL, function (status) {
         if (status === "success") {
           page.evaluate(self.evaluateGA, function (stats) {
-            ph.exit();          
+            ph.exit();
 	    callback(stats);
           });
         } else {
