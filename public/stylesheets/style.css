@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+h1 {
+	color: blue;
+}
+
+#DAP {
+	margin-bottom: 10px;
+}
