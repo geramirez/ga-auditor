@@ -13,19 +13,3 @@ block content
   br
   br
   #data
-  script.
-    document.getElementById("get-stats").addEventListener("click", getStats);
-    function getStats()
-    {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/audit', true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200)
-    {
-      var stats = JSON.parse(xhr.responseText);
-      document.getElementById("data").innerHTML = JSON.stringify(stats);
-    }
-    };
-      xhr.send(JSON.stringify({"url": document.getElementById("submission-text").value}));
-    }
