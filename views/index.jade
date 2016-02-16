@@ -1,15 +1,19 @@
 extends layout
 
 block content
-  h1 Google Analytics Auditor
-  h3 Usage
-  p /api/audit --data {"url": "<<url>>"}
-  p Example: curl -d '{"url": "https://cloud.gov/"}' -H "Content-Type: application/json" <<thissite>>/api/audit
-
-  textarea#submission-text(rows='1', cols='50')
-    | https://cloud.gov/
+  h1#title Google Analytics Auditor
+  #instructions
+    h4 A One Stop Shop to Quickly Check your Google Analytics Settings
+    br 
+    h3 Enter a URL to begin
+    input(id='submission-text',type='url', value='http://cloud.gov')
+    input(id='get-stats', type='submit', value='Audit', class="btn btn-primary")
+    br
+    br
+  .row#data
   br
-  button#get-stats(type='button') Audit
-  br
-  br
-  #data
+  hr
+  #api
+    h3 API Usage
+    p Example: curl -d '{"url": "https://cloud.gov/"}' -H "Content-Type: application/json" <<thissite>>/api/audit
+    p /api/audit --data {"url": "<<url>>"}
