@@ -23,64 +23,24 @@ xhr.send(JSON.stringify({"url": document.getElementById("submission-text").value
 };
 
 function dapData(DAP) {
-  data_div = document.getElementById('data');
-  // document.body.style.borderColor = "green";
-  var dap_div = document.createElement('div');
-  dap_div.id = "dap";
-  data_div.appendChild(dap_div);
-  
-  var heading = document.createElement("H1");
-  var title = document.createTextNode("DAP");
-  heading.appendChild(title);
-  
-  dap_div.appendChild(heading);
-  
-  var agency_div = document.createElement('div');
-  agency_div.id = "agency";
-  var agency_h2 = document.createElement("H2");
-  var agency_p = document.createElement("P");
-  var agency_heading = document.createTextNode("Agency: ");
-  var agency_name = document.createTextNode(DAP.agency);
-  agency_h2.appendChild(agency_heading);
-  agency_p.appendChild(agency_name);
-  agency_div.appendChild(agency_h2);
-  agency_div.appendChild(agency_p);
-  dap_div.appendChild(agency_div);
+  data_div = $("#data");
+  var $dap_div = $( "<div id='dap' class='col-md-6'/>" );
 
-  var sub_agency_div = document.createElement('div');
-  sub_agency_div.id = "subagency";
-  var sub_agency_h3 = document.createElement("H3");
-  var sub_agency_p = document.createElement("P");
-  var sub_agency_heading = document.createTextNode("Subagency: ");
-  var sub_agency_name = document.createTextNode(DAP.sub_agency);
-  sub_agency_h3.appendChild(sub_agency_heading);
-  sub_agency_p.appendChild(sub_agency_name);
-  sub_agency_div.appendChild(sub_agency_h3);
-  sub_agency_div.appendChild(sub_agency_p);
-  dap_div.appendChild(sub_agency_div);
+  var $agency_div = $( "<div id='agency'/>" );
 
-  var ua_codes_div = document.createElement('div');
-  ua_codes_div.id = "ua_codes";
-  var ua_codes_h3 = document.createElement("H3");
-  var ua_codes_p = document.createElement("P");
-  var ua_codes_version_p = document.createElement("P");
-  var ua_codes_heading = document.createTextNode("UA Codes: ");
-  var ua_codes = document.createTextNode(DAP.ua_codes);
-  var ua_version_h3 = document.createElement("H3");
-  var ua_version = document.createTextNode("Version: ");
-  var ua_codes_version = document.createTextNode(DAP.version);
-  var br = document.createElement("br");
-  ua_codes_h3.appendChild(ua_codes_heading);
-  ua_version_h3.appendChild(ua_version);
-  ua_codes_p.appendChild(ua_codes);
-  ua_codes_p.appendChild(br);
-  ua_codes_version_p.appendChild(ua_codes_version);
-  ua_codes_div.appendChild(ua_codes_h3);
-  ua_codes_div.appendChild(ua_codes_p);
-  ua_codes_div.appendChild(ua_version_h3);
-  ua_codes_div.appendChild(ua_codes_version);
-  dap_div.appendChild(ua_codes_div);
-  dap_div.className += "col-md-6";
+  $agency_div.append("<h1>DAP</h1>" + "<h2>Agency:</h2>" + "<p>" + DAP.agency + "</p>");
+
+  var $sub_agency_div = $( "<div id='subagency'/>" );
+  $sub_agency_div.append("<h2>Subagency:</h2>" + "<p>" + DAP.sub_agency + "</p>");
+
+  var $ua_codes_div = $( "<div id='ua_codes'/>" );
+
+  $ua_codes_div.append("<h3>UA Codes: </h3>" + "<p>" + DAP.ua_codes + "</p>" + "<h3>Version: </h3>" + "<p>" + DAP.version + "</p>" );
+
+  data_div.append($dap_div);
+  $dap_div.append($agency_div);
+  $dap_div.append($sub_agency_div);
+  $dap_div.append($ua_codes_div);
 }
 
 function uaData(UA) {
@@ -92,14 +52,14 @@ function uaData(UA) {
   ua_h1.appendChild(ua_title);
 
   ua_div.appendChild(ua_h1);
-  
+
   data_div = document.getElementById('data');
   data_div.appendChild(ua_div);
   ua_div.className += "col-md-6";
 
 
   for (item in UA) {
-    
+
     var tracking_id_div = document.createElement('div');
     tracking_id_div.id = "trackingId";
     var tracking_id_h3 = document.createElement("H3");
