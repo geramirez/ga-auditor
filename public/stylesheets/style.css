@@ -47,15 +47,18 @@ p {
 
 #data {
 	display: flex; 
+	width: auto;
 }
 
 #dap {
 	/*margin-top: 20px;*/
 	margin-bottom: 20px;
 	text-align:center;
+	padding: 40px;
 }
 
 #ua {
 	/*margin-top: 40px;*/
 	text-align:center;
+	padding: 40px;
 }
