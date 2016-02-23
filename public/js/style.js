@@ -44,42 +44,21 @@ function dapData(DAP) {
 }
 
 function uaData(UA) {
-  document.body.style.borderColor = "green";
-  var ua_div = document.createElement('div');
-  ua_div.id = "ua";
-  var ua_h1 = document.createElement("H1");
-  var ua_title = document.createTextNode("UA Codes");
-  ua_h1.appendChild(ua_title);
+  $("body").css("border-color", "green");
+  
+  data_div = $("#data");
 
-  ua_div.appendChild(ua_h1);
+  var $ua_div = $("<div id='ua' class='col-md-6'/>");
 
-  data_div = document.getElementById('data');
-  data_div.appendChild(ua_div);
-  ua_div.className += "col-md-6";
+  $ua_div.append("<h1>UA Codes</h1>");
 
+  data_div.append($ua_div);
 
   for (item in UA) {
 
-    var tracking_id_div = document.createElement('div');
-    tracking_id_div.id = "trackingId";
-    var tracking_id_h3 = document.createElement("H3");
-    var tracking_id_p = document.createElement("P");
-    var tracking_id_heading = document.createTextNode("Tracking ID: ");
-    var tracking_id = document.createTextNode(UA[item].trackingId);
-    tracking_id_p.appendChild(tracking_id);
-    tracking_id_h3.appendChild(tracking_id_heading);
-    tracking_id_div.appendChild(tracking_id_h3);
-    tracking_id_div.appendChild(tracking_id_p);
-
-    var tracking_id_version_h3 = document.createElement("H3");
-    var tracking_id_version_p = document.createElement("P");
-    var tracking_id_version_heading = document.createTextNode("Version: ");
-    tracking_id_version_h3.appendChild(tracking_id_version_heading);
-    var tracking_id_version = document.createTextNode(UA[item].version);
-    tracking_id_version_p.appendChild(tracking_id_version)
-    tracking_id_div.appendChild(tracking_id_version_h3);
-    tracking_id_div.appendChild(tracking_id_version_p);
-    ua_div.appendChild(tracking_id_div);
+    var $tracking_id_div = $("<div id='trackingId'/>");
+    $tracking_id_div.append("<h3>Tracking ID:</h3>" + "<p>" + UA[item].trackingId + "</p>" + "<h3>Version:</h3>" + "<p>" + UA[item].version + "</p>")
+    $ua_div.append($tracking_id_div);
 
 
   }
