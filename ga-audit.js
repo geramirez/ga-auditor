@@ -23,7 +23,7 @@ GoogleAnalyticsAuditor.prototype.evaluateGA = function() {
 	  data['DAP'] = {
 	    agency: oCONFIG['AGENCY'],
 	    ua_codes: oCONFIG['GWT_UAID'],
-	    sub_agnecy: oCONFIG['SUB_AGENCY'],
+	    sub_agency: oCONFIG['SUB_AGENCY'],
 	    version: oCONFIG['VERSION'],
 	  };
   }

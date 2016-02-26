@@ -1,31 +1,19 @@
 extends layout
 
 block content
-  h1 Google Analytics Auditor
-  h3 Usage
-  p /api/audit --data {"url": "<<url>>"}
-  p Example: curl -d '{"url": "https://cloud.gov/"}' -H "Content-Type: application/json" <<thissite>>/api/audit
-
-  textarea#submission-text(rows='1', cols='50')
-    | https://cloud.gov/
+  h1#title Google Analytics Auditor
+  #instructions
+    h4 A One Stop Shop to Quickly Check your Google Analytics Settings
+    br 
+    h3 Enter a URL to begin
+    input(id='submission-text',type='url', value='http://cloud.gov')
+    input(id='get-stats', type='submit', value='Audit', class="btn btn-primary")
+    br
+    br
+  .row#data
   br
-  button#get-stats(type='button') Audit
-  br
-  br
-  #data
-  script.
-    document.getElementById("get-stats").addEventListener("click", getStats);
-    function getStats()
-    {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/audit', true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200)
-    {
-      var stats = JSON.parse(xhr.responseText);
-      document.getElementById("data").innerHTML = JSON.stringify(stats);
-    }
-    };
-      xhr.send(JSON.stringify({"url": document.getElementById("submission-text").value}));
-    }
+  hr
+  #api
+    h3 API Usage
+    p Example: curl -d '{"url": "https://cloud.gov/"}' -H "Content-Type: application/json" <<thissite>>/api/audit
+    p /api/audit --data {"url": "<<url>>"}
