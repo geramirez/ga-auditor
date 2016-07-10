@@ -31,23 +31,37 @@ GoogleAnalyticsAuditor.prototype.evaluateGA = function() {
 }
 
 GoogleAnalyticsAuditor.prototype.getStats = function(callback) {
-  var self = this;
-  phantom.create(function (ph) {
-    ph.createPage(function (page) {
-      page.open(self.URL, function (status) {
-        if (status === "success") {
-          page.evaluate(self.evaluateGA, function (stats) {
-            ph.exit();
-	    callback(stats);
-          });
+    var self = this;
+    var sitepage = null;
+    var phInstance = null;
+    phantom.create()
+    .then(instance => {
+        phInstance = instance;
+        return instance.createPage();
+    })
+    .then(page => {
+        sitepage = page;
+        return page.open(self.URL);
+    })
+    .then(status => {
+        if (status == "success") {
+            sitepage.evaluate(self.evaluateGA)            
+                .then(function(data){
+                    sitepage.close();
+                    phInstance.exit();
+                    callback(data);
+                });
         } else {
-	  console.log(status);
-	  ph.exit();
-          callback({'error': 'Invalid URL'})
+            sitepage.close();
+            phInstance.exit();
+            callback({'error': 'Invalid URL'})
         }
-      });
-    });
-  });
+    })
+    .catch(error => {
+        sitepage.close();
+        phInstance.exit();
+        callback({'error': 'Invalid URL'})
+    }); 
 };
 
 
